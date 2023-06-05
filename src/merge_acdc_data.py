@@ -23,14 +23,14 @@ for file in IMG_FILES:
         acdc_output_search = glob.glob(os.path.join(acdc_img_path, '*_acdc_output.csv'))
         if len(acdc_output_search) == 1:
             acdc_output_path = acdc_output_search[0]
+            acdc_output = pd.read_csv(acdc_output_path).loc[:,['Cell_ID', 'cell_area_cm2']]
+            acdc_output['file_id'] = acdc_basename
+            overall_df = pd.concat([overall_df, acdc_output], ignore_index=True)
         elif len(acdc_output_search) == 0:
             print(f'No output file existing for {acdc_basename}. Skipping File')
         else:
             print(f'Found multiple output files for {acdc_basename}. Skipping File')
             continue
-        acdc_output = pd.read_csv(acdc_output_path).loc[:,['Cell_ID', 'cell_area_cm2']]
-        acdc_output['file_id'] = acdc_basename
-        overall_df = pd.concat([overall_df, acdc_output], ignore_index=True)
     else:
         continue
 
