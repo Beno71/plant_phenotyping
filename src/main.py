@@ -67,13 +67,3 @@ for file in IMG_FILES:
         np.savez_compressed(os.path.join(acdc_img_path, f'{acdc_basename}_segm.npz'), new_labeled)
 
 
-        """
-        fig, axs = plt.subplots(ncols=2, figsize=(12,6))
-        axs[0].imshow(img)
-        axs[0].set_title('Input Image')
-        axs[1].imshow(label2rgb(new_labeled))
-        axs[1].set_title('Plant Segmentation')
-        plt.show()
-        """
-
-
